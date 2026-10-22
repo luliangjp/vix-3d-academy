@@ -1,0 +1,31 @@
+{
+  "name": "VIX 3D 期权交互学院 (六阶20课全栈版)",
+  "short_name": "VIX 3D学院",
+  "description": "华尔街交易台级期权 Greeks、VIX 微观结构、高阶策略、VRP 波动率锥、0DTE GEX 与组合风控/税制 3D 交互学院",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#070b14",
+  "theme_color": "#070b14",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

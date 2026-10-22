@@ -1,0 +1,7 @@
+# macOS & build artifacts
+.DS_Store
+dist/
+backups/
+*.bak*
+*.log
+node_modules/
