@@ -753,20 +753,21 @@
         <button onclick="toggleMobileGuideModal(false)" class="px-2.5 py-1 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-bold">✕ 关闭</button>
       </div>
       <div class="p-4 space-y-3.5 overflow-y-auto text-xs leading-relaxed">
-        <!-- Method 1: Instant LAN + PWA Home Screen -->
+        <!-- Method 1: Cloud HTTPS + PWA Home Screen -->
         <div class="p-3 rounded-xl bg-[var(--secondary)] border border-emerald-500/40 space-y-2">
-          <div class="font-bold text-emerald-600 dark:text-emerald-400 text-sm">🚀 方案一：添加至手机主屏幕（推荐 · 永久离线 App）</div>
+          <div class="font-bold text-emerald-600 dark:text-emerald-400 text-sm">🌐 方案一：永久云端网址（无需连家里 Wi-Fi · Mac 关机可用）</div>
           <p class="text-[var(--secondary-foreground)]">
-            手机与电脑连接同一 Wi-Fi 时，在手机 Safari / Chrome 打开下方地址：
+            在手机 Safari / Chrome 打开下方专属云端 HTTPS 网址（5G / 任意 Wi-Fi 均可访问，后续更新自动同步）：
           </p>
           <div class="flex items-center justify-between gap-2 p-2 rounded-lg bg-[var(--background)] border border-[var(--border)] font-mono">
-            <span id="mobileLanUrlText" class="font-bold text-[var(--primary)] truncate">http://192.168.31.93:8688</span>
+            <span id="mobileLanUrlText" class="font-bold text-[var(--primary)] truncate">https://luliangjp.github.io/vix-3d-academy/</span>
             <button onclick="copyMobileLanUrl()" id="btnCopyLanUrl" class="shrink-0 px-2.5 py-1 rounded bg-[var(--primary)] text-[var(--primary-foreground)] text-[11px] font-sans font-bold">复制地址</button>
           </div>
           <div class="text-[var(--muted-foreground)] space-y-1">
             <div>1. 用 iPhone <strong>Safari</strong> 打开上方网址；</div>
             <div>2. 点击浏览器底部「<strong>分享</strong>」按钮（方框向上箭头）→ 选择「<strong>添加到主屏幕</strong>」；</div>
-            <div>3. 添加后内置 Service Worker 会将全部 20 课与 3D 引擎 <strong>100% 缓存在手机本地</strong>，以后无论在地铁、飞机还是户外无网环境，点桌面图标即可全屏秒开！</div>
+            <div>3. 添加后内置 Service Worker 会将全部 20 课与 3D 引擎 <strong>100% 缓存在手机本地</strong>（连网时自动拉取最新修改，无网/地铁/飞机时秒切离线缓存）！</div>
+            <div class="pt-1 text-[11px] opacity-80">💡 家里局域网备用地址：<code>http://192.168.31.93:8688</code></div>
           </div>
         </div>
 
@@ -4650,10 +4651,6 @@
       if (!modal) return;
       const shouldOpen = (typeof forceOpen === 'boolean') ? forceOpen : modal.classList.contains('hidden');
       if (shouldOpen) {
-        const urlEl = document.getElementById('mobileLanUrlText');
-        if (urlEl && window.location && (window.location.protocol === 'http:' || window.location.protocol === 'https:') && window.location.host && !window.location.host.includes('localhost') && !window.location.host.includes('127.0.0.1')) {
-          urlEl.textContent = window.location.origin;
-        }
         modal.classList.remove('hidden');
       } else {
         modal.classList.add('hidden');
@@ -4664,7 +4661,7 @@
     function copyMobileLanUrl() {
       const urlEl = document.getElementById('mobileLanUrlText');
       const btn = document.getElementById('btnCopyLanUrl');
-      const text = urlEl ? urlEl.textContent : 'http://192.168.31.93:8688';
+      const text = urlEl ? urlEl.textContent : 'https://luliangjp.github.io/vix-3d-academy/';
       try {
         if (window.navigator && window.navigator.clipboard) {
           window.navigator.clipboard.writeText(text);
