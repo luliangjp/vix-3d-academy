@@ -50,8 +50,12 @@ function fetchWithFastTimeout(request, timeoutMs = 800) {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
+  // Smart timeout: 800ms for private LAN IPs, 2500ms for Cloud HTTPS (GitHub Pages) on 4G/5G
+  const isLan = /^(192\.168\.|10\.|172\.(1[6-9]|2\d|3[01])\.|localhost|127\.)/.test(self.location.hostname);
+  const timeoutMs = isLan ? 800 : 2500;
+
   event.respondWith(
-    fetchWithFastTimeout(event.request, 800)
+    fetchWithFastTimeout(event.request, timeoutMs)
       .then((networkResp) => {
         if (networkResp && networkResp.status === 200) {
           const clone = networkResp.clone();
